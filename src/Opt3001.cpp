@@ -56,16 +56,6 @@ uint16_t OPT3001Class::readRegister(uint8_t registerName)
 	return (msb << 8) | lsb;
 }
 
-void OPT3001Class::begin(uint16_t config)
-{
-    writeRegister(CONFIG_REG, config);
-}
-
-void OPT3001Class::begin()
-{
-    begin(DEFAULT_CONFIG_800);
-}
-
 uint16_t OPT3001Class::readOpticalManufacturerId()
 {
 
@@ -128,17 +118,17 @@ boolean OPT3001Class::isOpticalConversionReady()
 
 void OPT3001Class::startOpticalConversion()
 {
-    begin(DEFAULT_CONFIG_100_OS);
+    writeRegister(CONFIG_REG, DEFAULT_CONFIG_100_OS);
 }
 
 void OPT3001Class::startOpticalConversion(uint16_t startArg)
 {
-    begin(startArg);
+    writeRegister(CONFIG_REG, startArg);
 }
 
 void OPT3001Class::shutOpticalDown()
 {
-    begin(DEFAULT_CONFIG_SHDWN);
+    writeRegister(CONFIG_REG, DEFAULT_CONFIG_SHDWN);
 }
 
 // EOF

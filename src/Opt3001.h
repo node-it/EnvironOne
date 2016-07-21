@@ -70,8 +70,6 @@
 class OPT3001Class
 {
   public:
-	void     begin();
-    void     begin(uint16_t config);
     void     shutOpticalDown();
     void     startOpticalConversion();
     void     startOpticalConversion(uint16_t startArg);

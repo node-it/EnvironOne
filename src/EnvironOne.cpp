@@ -35,12 +35,12 @@ EnvironOneClass::EnvironOneClass(): initialized(false)
  */
 void EnvironOneClass::begin()
 {
-    OPT3001Class::begin(DEFAULT_CONFIG_800);
     initialized = true;
 }
 
 void EnvironOneClass::begin(uint8_t sda, uint8_t scl)
 {
-//    Wire.begin(sda, scl);
+    Wire.begin(sda, scl);
     begin();
+    initialized = true;
 }
