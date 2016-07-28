@@ -77,8 +77,6 @@ uint16_t OPT3001Class::readOpticalConfigReg()
 uint16_t OPT3001Class::readOpticalLowLimitReg()
 {
 	return readRegister(LOWLIMIT_REG);
-	
-	
 }
 
 uint16_t OPT3001Class::readOpticalHighLimitReg()
@@ -89,19 +87,10 @@ uint16_t OPT3001Class::readOpticalHighLimitReg()
 
 float OPT3001Class::readOpticalResult()
 {
-	uint16_t result;
-    uint16_t exponent;
-    uint16_t raw;
+	/* Read raw data from the hw register */
+	uint16_t raw = readRegister(RESULT_REG);
 	
-    /* Read raw data from the hw register */
-    raw = readRegister(RESULT_REG);
-
-    /* Convert to LUX */
-    result = raw & 0x0fff;
-    exponent = (raw & 0xf000) >> 12;
-
-	return result * 0.01 * pow(2, exponent);
-	
+	return ((raw & 0x0fff) << ((raw & 0xf000) >> 12)) * 0.01;
 }
 
 #if defined(OPT_INTERRUPT_PIN)
